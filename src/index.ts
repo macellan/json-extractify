@@ -3,7 +3,7 @@
  * @param data - The string to parse.
  * @returns An array of parsed JSON objects.
  */
-const parse = (data: string): object[] => {
+const parse = <T extends object>(data: string): T[] => {
     const regex = /{[^}]+}/g
     const matches = data.match(regex)
 
