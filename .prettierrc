@@ -1,0 +1,9 @@
+{
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "semi": false,
+    "tabWidth": 4,
+    "trailingComma": "es5",
+    "useTabs": false,
+    "arrowParens": "avoid"
+}
