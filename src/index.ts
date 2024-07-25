@@ -4,14 +4,29 @@
  * @returns An array of parsed JSON objects.
  */
 const parse = <T extends object>(data: string): T[] => {
-    const regex = /{[^}]+}/g
-    const matches = data.match(regex)
+    const results: T[] = []
+    let depth = 0
+    let currentJson = ''
 
-    if (!matches) return []
+    for (let i = 0; i < data.length; i++) {
+        const char = data[i]
 
-    const objects = matches.map(jsonStr => JSON.parse(jsonStr))
+        if (char === '{') {
+            if (depth === 0) currentJson = ''
 
-    return objects
+            depth++
+        }
+
+        if (depth > 0) currentJson += char
+
+        if (char === '}') {
+            depth--
+
+            if (depth === 0) results.push(JSON.parse(currentJson))
+        }
+    }
+
+    return results
 }
 
 export default { parse }
