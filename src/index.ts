@@ -22,7 +22,11 @@ const parse = <T extends object>(data: string): T[] => {
         if (char === '}') {
             depth--
 
-            if (depth === 0) results.push(JSON.parse(currentJson))
+            if (depth === 0) {
+                try {
+                    results.push(JSON.parse(currentJson))
+                } catch (error) {}
+            }
         }
     }
 

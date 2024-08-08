@@ -34,3 +34,10 @@ it('should correctly parse a JSON string with objects separated by arbitrary tex
 
     expect(value).toEqual([{ foo: 'bar' }, { abc: 'xyz' }, { def: 'ghi' }])
 })
+
+it('should not throw an error when parsing invalid JSON', () => {
+    const json = '{ "foo": invalid } { "abc": "xyz" }'
+    const value = JsonExtractify.parse(json)
+
+    expect(value).toEqual([{ abc: 'xyz' }])
+})
